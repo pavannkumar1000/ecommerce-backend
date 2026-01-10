@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: open-library
+    runtime: python
+    pythonVersion: "3.11.0"
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn library.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        value: "postgresql://openlibrary:QsbxCTfOENTshx14GHPXDuUUcIu0H3I7@dpg-d5gu3524d50c738lt7s0-a.singapore-postgres.render.com/openlibrary_7ckw"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: false
+      - key: WEB_CONCURRENCY
+        value: 4
